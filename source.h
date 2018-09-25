@@ -11,10 +11,6 @@ class source
 {
 private:
 
-
-
-public:
-
     //the name of the node
     int name;
 
@@ -26,6 +22,7 @@ public:
     //the list of destinations the node connects to
     std::list<destination> destinations;
 
+public:
 
     source();
     source(int);
@@ -57,12 +54,13 @@ public:
     //returns the node with the found location
     destination& findNode(int);
 
+    //source& operator=(source &);
 
     //overloading the == operator to work with the find function in list classes
     friend bool operator==(source& lhs,  source& rhs);
     friend bool operator==(int lhs,  source& rhs);
 
-
+    ~source();
 
 };
 

@@ -4,6 +4,7 @@
 #include "documentation.h"
 #include "graphdocumentation.h"
 #include "source.h"
+#include "dfs.h"
 
 
 int main()
@@ -44,8 +45,12 @@ int main()
 
         std::cout << "Yeah, I built it..." <<std::endl;
 
-        std::list<source> graphList = loader.getGraph();
 
+        DFS* dfssearcher = new DFS();
+
+        //std::list<source> lister = loader.getGraph();
+
+        dfssearcher->searchIterative(loader.getGraph());
 
     }
 

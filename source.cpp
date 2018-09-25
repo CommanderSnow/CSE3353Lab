@@ -35,7 +35,7 @@ source::source(source& rhs)
 
 
 //constructs a destination (with only a name) at the end of the list
-void  source::addDestination(int x)
+void source::addDestination(int x)
 {
     destination newDestination;
     newDestination.setName(x);
@@ -120,6 +120,22 @@ destination& source::findNode(int x)
 
     return *iter;
 }
+/*
+source& source::operator =(source &rhs)
+{
+    if(this == &rhs)
+    {
+        return *this;
+    }
+
+    this->name = rhs.getName();
+    this->xPos = rhs.getxPos();
+    this->yPos = rhs.getyPos();
+    this->zPos = rhs.getzPos();
+    this->destinations = rhs.getDestinations();
+
+    return *this;
+}*/
 
 bool operator==(source& lhs, source& rhs)
 {
@@ -137,4 +153,7 @@ bool operator==(int lhs, source& rhs)
     return false;
 }
 
+source::~source()
+{
 
+}
