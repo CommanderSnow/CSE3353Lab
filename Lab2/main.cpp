@@ -14,8 +14,13 @@ int main(int argc, char *argv[])
     //these variables set the starting conditions and are the only things that should ever need to be changed in main
 
     int mode = 1;                               //sets if Sort or Search is to be used, 0 for Sort, 1 for Search
+    int saveMode = 1;                           //change to 1 if you want to output the most recently sorted data to the SaveFile
+    int viewMode = 0;                           //change to 1 if you want to display the contents of the array before and after being sorted
+                                                //Warning: Gets messy at large data sizes
 
     //Variables needed for Search Mode
+    int maxLoops = 100;                         //sets the number of times you want to search (no change needed if using command line arguments)
+
 
 
     //Variables needed for Sort Mode
@@ -25,71 +30,13 @@ int main(int argc, char *argv[])
     int num_of_datasets = 4;                    //sets the number of datasets to be used
     int num_of_algorithms = 3;                  //sets the number of algorithms to be used
 
-    int saveMode = 1;                           //change to 1 if you want to output the most recently sorted data to the SaveFile
-    int viewMode = 0;                           //change to 1 if you want to display the contents of the array before and after being sorted
-                                                //Warning: Gets messy at large data sizes
+
 
 
 
 
 ///////////////////changing anything beneath this line will fundamentally alter the code///////////////////
 ///////////////////////////////////////***alter with caution***////////////////////////////////////////////
-
-
-    //Search Mode (put this under Sort mode when your done)
-    if(mode == 1)
-    {
-        //std::cout << "Hello World!" << argc <<std::endl;
-
-
-        int startNode = 1;
-        int endNode = 16;
-
-        int maxLoops = 100;
-        int loopCount = 0;
-
-        if(argc > 1)
-        {
-            startNode = std::atoi(argv[1]);
-            endNode = std::atoi(argv[2]);
-            maxLoops = 1;
-        }
-
-        graphDocumentation loader;
-        loader.buildGraph();
-        search<int*> searcher;
-
-        //clears the save file so that a new file can be made
-        documentation<int*> clearing;
-        clearing.clearSaveFile();
-
-        while(loopCount < maxLoops)
-        {
-            for(int i=1; i<7; i++)
-            {
-                startNode = (rand() % loader.getGraph().size() + 1);
-                endNode = (rand() % loader.getGraph().size() + 1);
-
-                searcher.load(loader.getGraph(), i, startNode, endNode);
-                searcher.execute();
-
-                if(viewMode == 1)
-                {   searcher.stats();   }
-
-                if(saveMode == 1)
-                {   searcher.save();    }
-            }
-
-            loopCount++;
-
-        }
-
-
-    }
-
-
-
-
 
     //Sort Mode
     if(mode == 0)
@@ -98,8 +45,6 @@ int main(int argc, char *argv[])
         sort<int*> sorter;
         int* data;
         documentation<int*> loader;
-
-
 
         //these variables ensure the while loops work properly
         int f1 = 1;     //governs the while loop that determines which dataset to use
@@ -148,7 +93,59 @@ int main(int argc, char *argv[])
             delete[] data;
             f1=1;
         }//end of for loop
-    }
+
+    }//end of sort
+
+
+
+
+
+
+
+    //Search Mode
+    if(mode == 1)
+    {
+        int startNode = 1;
+        int endNode = 16;
+        int loopCount = 0;
+
+        if(argc > 1)
+        {
+            startNode = std::atoi(argv[1]);
+            endNode = std::atoi(argv[2]);
+            maxLoops = 1;
+        }
+
+        graphDocumentation loader;
+        loader.buildGraph();
+        search<int*> searcher;
+
+        //clears the save file so that a new file can be made
+        documentation<int*> clearing;
+        clearing.clearSaveFile();
+
+        while(loopCount < maxLoops)
+        {
+            for(int i=1; i<7; i++)
+            {
+                startNode = (rand() % loader.getGraph().size() + 1);
+                endNode = (rand() % loader.getGraph().size() + 1);
+
+                searcher.load(loader.getGraph(), i, startNode, endNode);
+                searcher.execute();
+
+                if(viewMode == 1)
+                {   searcher.stats();   }
+
+                if(saveMode == 1)
+                {   searcher.save();    }
+            }
+
+            loopCount++;
+
+        }//end of while loop
+
+    }//end of search
 
     return 0;
 }//end of main

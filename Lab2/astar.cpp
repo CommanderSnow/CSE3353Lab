@@ -170,8 +170,6 @@ void AStar::findDistance()
     int zDist = (sourceNode.getzPos() - destNode.getzPos()) * (sourceNode.getzPos() - destNode.getzPos());
 
     distance = xDist + yDist + zDist;
-
-    //std::cout << destNode.getxPos() << yDist << zDist <<std::endl;
 }
 
 int AStar::getPath()

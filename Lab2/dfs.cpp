@@ -109,6 +109,7 @@ void DFS::recursiveFunc(source finder, std::vector<bool>& visited)
     theStack.pop();
 
     NodesExplored++;
+    NodesInPath++;
 
     bestPath.push_back(finder.getName());
 
