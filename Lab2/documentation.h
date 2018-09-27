@@ -33,6 +33,8 @@ public:
 
     //saves the data to the SaveFile
     void saveFile(T&, int);
+    void saveFile(int NodesInPath, int NodesExplored, double speed, int distance, int cost);
+    void clearSaveFile();
 
 };
 

@@ -24,13 +24,13 @@ source::source(int x, destination first)
     destinations.emplace_back(first);
 }
 
-source::source(source& rhs)
+source::source(const source &rhs)
 {
-    this->name = rhs.getName();
-    this->xPos = rhs.getxPos();
-    this->yPos = rhs.getyPos();
-    this->zPos = rhs.getzPos();
-    this->destinations = rhs.getDestinations();
+    this->name = rhs.name;
+    this->xPos = rhs.xPos;
+    this->yPos = rhs.yPos;
+    this->zPos = rhs.zPos;
+    this->destinations = rhs.destinations;
 }
 
 
@@ -40,6 +40,7 @@ void source::addDestination(int x)
     destination newDestination;
     newDestination.setName(x);
 
+
     destinations.emplace_back(newDestination);
 }
 
@@ -47,7 +48,6 @@ void source::addDestination(int x)
 void source::addDestination(int x, int cost)
 {
     destination newDestination(x, cost);
-
 
     destinations.emplace_back(newDestination);
 }
@@ -120,22 +120,30 @@ destination& source::findNode(int x)
 
     return *iter;
 }
-/*
-source& source::operator =(source &rhs)
+
+source& source::operator =(source const &rhs)
 {
     if(this == &rhs)
     {
         return *this;
     }
 
-    this->name = rhs.getName();
-    this->xPos = rhs.getxPos();
-    this->yPos = rhs.getyPos();
-    this->zPos = rhs.getzPos();
-    this->destinations = rhs.getDestinations();
+    this->name = rhs.name;
+    this->xPos = rhs.xPos;
+    this->yPos = rhs.yPos;
+    this->zPos = rhs.zPos;
+    this->destinations = rhs.destinations;
 
     return *this;
-}*/
+}
+
+bool operator <(source const &lhs, source const &rhs)
+{
+    if(lhs.name < rhs.name)
+    {   return true;    }
+
+    return false;
+}
 
 bool operator==(source& lhs, source& rhs)
 {

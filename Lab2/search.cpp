@@ -1,5 +1,5 @@
 #include "search.h"
-#include "sortingalgorithm.h"
+#include "searchingalgorithm.h"
 #include "documentation.h"
 
 
@@ -15,40 +15,42 @@ template <class T>
 
 search<T>::search()
 {
-    datasize = 0;
     speed = 0;
     selection = 0;
+
+    NodesInPath = 0;
+    NodesExplored = 0;
+    distance = 0;
+    cost = 0;
 }
 
 //takes a file name and reads the input data from data sets
 template <class T>
-void search<T>::load(std::list<source> &a, int x, int z)
+void search<T>::load(std::list<source> &a, int select, int starter, int dest)
 {
     data = a;
-
-    if(x<0)
-    {
-        cout << "datasize out of bounds, defaulting to 10" <<endl;
-        x = 10;
-    }
-
-    datasize = x;
-    selection = z;
-    speed = 0;
+    selection = select;
+    start = starter;
+    end = dest;
 }
 
 //executes the search algorithm
 template <class T>
 void search<T>::execute()
 {
-    //sortingAlgorithm<T> sorty(data, datasize, selection);
+    searchingAlgorithm<T> searchy(data, selection, start, end);
 
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
-    //sorty.execute();
+    searchy.execute();
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
 
     duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
     speed = time_span.count();
+
+    NodesInPath = searchy.getPath();
+    NodesExplored = searchy.getExplored();
+    distance = searchy.getDistance();
+    cost = searchy.getCost();
 }
 
 //prints the solution to the screen
@@ -66,20 +68,76 @@ void search<T>::stats()
 {
     if(selection == 1)
     {
-        cout << "Bubble Sort at " << datasize << " elements. ";
+        cout << "DFS Iterative: " <<endl;
+        cout << "Nodes in Path - (" << NodesInPath << ") ";
+        cout << "Nodes Explored - (" << NodesExplored << ") " <<endl;
+
+        cout << "The distance traveled is (" << distance << ") ";
+        cout << "The cost is (" << cost << ") " <<endl;
+
+        cout << "It took: " << speed << " seconds to complete." <<endl <<endl;
     }
 
     else if(selection == 2)
     {
-        cout << "Insertion Sort at " << datasize << " elements. ";
+        cout << "DFS Recursive: " <<endl;
+        cout << "Nodes in Path - (" << NodesInPath << ") ";
+        cout << "Nodes Explored - (" << NodesExplored << ") " <<endl;
+
+        cout << "The distance traveled is (" << distance << ") ";
+        cout << "The cost is (" << cost << ") " <<endl;
+
+        cout << "It took: " << speed << " seconds to complete." <<endl <<endl;
     }
 
     else if(selection == 3)
     {
-        cout << "Merge Sort at " << datasize << " elements. ";
+        cout << "BFS Iterative: " <<endl;
+        cout << "Nodes in Path - (" << NodesInPath << ") ";
+        cout << "Nodes Explored - (" << NodesExplored << ") " <<endl;
+
+        cout << "The distance traveled is (" << distance << ") ";
+        cout << "The cost is (" << cost << ") " <<endl;
+
+        cout << "It took: " << speed << " seconds to complete." <<endl <<endl;
     }
 
-    cout << "It took: " << speed << " seconds to complete." <<endl;
+    else if(selection == 4)
+    {
+        cout << "BFS Recursive: " <<endl;
+        cout << "Nodes in Path - (" << NodesInPath << ") ";
+        cout << "Nodes Explored - (" << NodesExplored << ") " <<endl;
+
+        cout << "The distance traveled is (" << distance << ") ";
+        cout << "The cost is (" << cost << ") " <<endl;
+
+        cout << "It took: " << speed << " seconds to complete." <<endl <<endl;
+    }
+
+    else if(selection == 5)
+    {
+        cout << "Dijkstra: " <<endl;
+        cout << "Nodes in Path - (" << NodesInPath << ") ";
+        cout << "Nodes Explored - (" << NodesExplored << ") " <<endl;
+
+        cout << "The distance traveled is (" << distance << ") ";
+        cout << "The cost is (" << cost << ") " <<endl;
+
+        cout << "It took: " << speed << " seconds to complete." <<endl<<endl;
+    }
+
+    else if(selection == 6)
+    {
+        cout << "AStar: " <<endl;
+        cout << "Nodes in Path - (" << NodesInPath << ") ";
+        cout << "Nodes Explored - (" << NodesExplored << ") " <<endl;
+
+        cout << "The distance traveled is (" << distance << ") ";
+        cout << "The cost is (" << cost << ") " <<endl;
+
+        cout << "It took: " << speed << " seconds to complete." <<endl <<endl;
+    }
+
 }
 
 //loads the corresponding algorithm to the interface
@@ -94,7 +152,7 @@ template <class T>
 void search<T>::save()
 {
     documentation<T> saver;
-    //saver.saveFile(data, datasize);
+    saver.saveFile(NodesInPath, NodesExplored, speed, distance, cost);
 }
 
 //expanded in the future
@@ -104,7 +162,7 @@ void search<T>::configure()
     //will be used in the future
 }
 
-//template class search<int*>;
+template class search<int*>;
 //template class search<float*>;
 //template class search<double*>;
 //template class search<char*>;

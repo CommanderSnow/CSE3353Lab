@@ -12,14 +12,14 @@ SOURCES += main.cpp \
     merge.cpp \
     documentation.cpp \
     dfs.cpp \
-    bfs.cpp \
-    dijkstra.cpp \
     astar.cpp \
     search.cpp \
     graphdocumentation.cpp \
     destination.cpp \
     source.cpp \
-    searchingalgorithm.cpp
+    searchingalgorithm.cpp \
+    dijkstra.cpp \
+    bfs.cpp
 
 HEADERS += \
     algorithm.h \

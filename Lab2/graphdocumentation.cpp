@@ -63,7 +63,6 @@ void graphDocumentation::buildGraph()
         }
 
         graph.emplace_back(sourceNode);
-
     }
 
 
@@ -73,9 +72,6 @@ void graphDocumentation::buildGraph()
         //reads in the full line
         string s;
         std::getline(readWeight, s);
-
-        //std::cout<< s <<std::endl;
-
 
         if(s == "")
         {   break;  }
@@ -146,7 +142,6 @@ void graphDocumentation::buildGraph()
         modifier.setxPos(node[1]);
         modifier.setyPos(node[2]);
         modifier.setzPos(node[3]);
-
     }
 
     readGraph.close();

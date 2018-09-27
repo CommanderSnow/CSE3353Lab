@@ -27,7 +27,7 @@ public:
     source();
     source(int);
     source(int x, destination first);
-    source(source& rhs);
+    source(source const & rhs);
 
     //constructs a destination at the end of the list
     void addDestination(int);
@@ -54,7 +54,8 @@ public:
     //returns the node with the found location
     destination& findNode(int);
 
-    //source& operator=(source &);
+    source& operator=(const source &);
+    friend bool operator<(const source &lhs, const source &rhs);
 
     //overloading the == operator to work with the find function in list classes
     friend bool operator==(source& lhs,  source& rhs);

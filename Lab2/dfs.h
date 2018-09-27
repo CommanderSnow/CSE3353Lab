@@ -13,23 +13,38 @@ class DFS
 private:
     source sourceNode;
     source destNode;
+    std::list<source> pathway;
     std::stack<source> theStack;    //the stack that holds the possible destinations to travel to
+    std::vector<int> bestPath;      //the vector that holds the best path from source to destination
 
+
+    int NodesInPath;
+    int NodesExplored;
+    int distance;
+    int cost;
 
 public:
 
     DFS();
 
-    void searchIterative(std::list<source>&);
+    void settings(std::list<source>, int, int);
 
-    void searchRecursive(std::list<source>&);
+    void searchIterative();
 
-    void recursiveFunc(source, std::vector<bool>&, std::list<source>&);
+    void searchRecursive();
 
-    void setSourceDest(int, int);
+    void recursiveFunc(source, std::vector<bool>&);
 
-    source& findNode(std::list<source>& pathway, int x);
+    source& findNode(int x);
 
+    void displayPath();
+
+    void clear();
+
+    int getPath();
+    int getExplored();
+    int getDistance();
+    int getCost();
 
 };
 

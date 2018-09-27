@@ -1,13 +1,15 @@
 #include <iostream>
+#include <random>
 #include "datasets.h"
 #include "sort.h"
+#include "search.h"
 #include "documentation.h"
 #include "graphdocumentation.h"
 #include "source.h"
 #include "dfs.h"
 
 
-int main()
+int main(int argc, char *argv[])
 {
     //these variables set the starting conditions and are the only things that should ever need to be changed in main
 
@@ -37,20 +39,51 @@ int main()
     //Search Mode (put this under Sort mode when your done)
     if(mode == 1)
     {
-        std::cout << "Hello World" <<std::endl;
+        //std::cout << "Hello World!" << argc <<std::endl;
+
+
+        int startNode = 1;
+        int endNode = 16;
+
+        int maxLoops = 100;
+        int loopCount = 0;
+
+        if(argc > 1)
+        {
+            startNode = std::atoi(argv[1]);
+            endNode = std::atoi(argv[2]);
+            maxLoops = 1;
+        }
 
         graphDocumentation loader;
-
         loader.buildGraph();
+        search<int*> searcher;
 
-        std::cout << "Yeah, I built it..." <<std::endl;
+        //clears the save file so that a new file can be made
+        documentation<int*> clearing;
+        clearing.clearSaveFile();
 
+        while(loopCount < maxLoops)
+        {
+            for(int i=1; i<7; i++)
+            {
+                startNode = (rand() % loader.getGraph().size() + 1);
+                endNode = (rand() % loader.getGraph().size() + 1);
 
-        DFS* dfssearcher = new DFS();
+                searcher.load(loader.getGraph(), i, startNode, endNode);
+                searcher.execute();
 
-        //std::list<source> lister = loader.getGraph();
+                if(viewMode == 1)
+                {   searcher.stats();   }
 
-        dfssearcher->searchIterative(loader.getGraph());
+                if(saveMode == 1)
+                {   searcher.save();    }
+            }
+
+            loopCount++;
+
+        }
+
 
     }
 

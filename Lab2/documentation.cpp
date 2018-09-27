@@ -66,6 +66,24 @@ void documentation<T>::saveFile(T &data, int size)
     storeFile(data, size, 0);
 }
 
+template <class T>
+void documentation<T>::saveFile(int NodesInPath, int NodesExplored, double speed, int distance, int cost)
+{
+    std::ofstream outputFile(argv[0], std::ios::app);
+
+    outputFile << NodesInPath << ", " << NodesExplored << ", ";
+    outputFile << speed << ", " << distance << ", " << cost <<std::endl;
+
+    outputFile.close();
+}
+
+template <class T>
+void documentation<T>::clearSaveFile()
+{
+    std::ofstream outputFile(argv[0], std::ofstream::out | std::ofstream::trunc);
+    outputFile.close();
+}
+
 
 
 template class documentation<int*>;
