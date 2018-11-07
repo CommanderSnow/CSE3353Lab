@@ -17,7 +17,7 @@ int main()
     bool viewMode = false;      //change to true if you want to display the each path as it gets calculated
                                 //Warning: Gets messy at large data sizes
 
-    int points = 10;             //sets the number of nodes to randomize and search through
+    int points = 0;             //sets the number of nodes to randomize and search through
                                  //leave 0 if you wish to read in from a document, not recommended to go above 12
 
 
