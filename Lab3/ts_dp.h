@@ -7,6 +7,7 @@
 #include <sstream>
 #include <algorithm>
 #include <cmath>
+#include <vector>
 #include "point.h"
 
 class TS_DP
