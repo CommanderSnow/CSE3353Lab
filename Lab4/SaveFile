@@ -1,0 +1,8 @@
+The shortest path for Brute Force is: 1->5->7->8->4->3->2->6->9->10 | Distance: 41.2131
+Time taken: 0.821047
+The shortest path for Dynamic Programming is: 1->5->7->8->4->3->2->6->9->10 | Distance: 41.2131
+Time taken: 0.113006
+The shortest path for Genetic Algorithm is: 9->5->7->8->4->3->2->6->9->10 | Distance: 69.382
+Time taken: 0.0050003
+->7->8->10->4->3->2->6->9->5 | Distance: 41.3484
+Time taken: 0.001
