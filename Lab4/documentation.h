@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <chrono>
 #include "point.h"
 
 
@@ -40,10 +41,10 @@ public:
     void clearSave();
 
     //saves the graph
-    void saveFile(int selection, double speed, int* bestPath, float bestDist, int size);
+    void saveFile(int selection, double speed, std::vector<int> &bestPath, float bestDist, int size);
 
     //saves a generation from a genetic search
-    //void saveGeneration(std::vector<std::vector<int>> &population, int generation);
+    void randomGraph(int points);
 
 };
 

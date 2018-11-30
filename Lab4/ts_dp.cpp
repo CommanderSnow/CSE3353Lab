@@ -10,7 +10,7 @@ TS_DP::TS_DP(bool viewer)
     viewMode = viewer;
 }
 
-void TS_DP::findPath(std::vector<point> graph, float &bestDist, int *&bestPath)
+void TS_DP::findPath(std::vector<point> graph, float &bestDist, std::vector<int> &bestPath)
 {
     int size = graph.size();
 

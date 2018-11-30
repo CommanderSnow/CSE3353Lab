@@ -11,7 +11,7 @@ TS_Brute::TS_Brute(bool viewer)
     viewMode = viewer;
 }
 
-void TS_Brute::findPath(std::vector<point> graph, float &bestDist, int *&bestPath)
+void TS_Brute::findPath(std::vector<point> graph, float &bestDist, std::vector<int> &bestPath)
 {
     int size = graph.size();
     float totalDistance = 0;
@@ -34,7 +34,7 @@ void TS_Brute::findPath(std::vector<point> graph, float &bestDist, int *&bestPat
 
 }
 
-void TS_Brute::pathCalc(std::vector<point> graph, std::vector<int> permutation, float &totalDistance, float &bestDist, int* &bestPath)
+void TS_Brute::pathCalc(std::vector<point> graph, std::vector<int> permutation, float &totalDistance, float &bestDist, std::vector<int> &bestPath)
 {
     int size = graph.size();
     totalDistance = distanceCalc(graph[permutation[0]], graph[permutation[size-1]]);

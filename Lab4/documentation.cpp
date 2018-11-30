@@ -112,7 +112,7 @@ void documentation::clearSave()
     outputFile.close();
 }
 
-void documentation::saveFile(int selection, double speed, int* bestPath, float bestDist, int size)
+void documentation::saveFile(int selection, double speed, std::vector<int> &bestPath, float bestDist, int size)
 {
     std::ofstream outputFile(argv[0], std::ios::app);
 
@@ -146,6 +146,30 @@ void documentation::saveFile(int selection, double speed, int* bestPath, float b
     outputFile << " | Distance: " << bestDist <<std::endl;
 
     outputFile << "Time taken: " << speed <<std::endl;
+}
+
+void documentation::randomGraph(int points)
+{
+    graph;
+
+    std::srand(std::time(0));
+
+    for(int i=1; i<points+1; i++)
+    {
+        //gets a random float between 0 and 10
+        float data1 = static_cast<float>(rand() % 1000) / 100;
+        float data2 = static_cast<float>(rand() % 1000) / 100;
+        float data3 = static_cast<float>(rand() % 1000) / 100;
+        point node(i, data1, data2, data3);
+        graph.push_back(node);
+    }
+
+
+    for(int i=0; i<graph.size(); i++)
+    {
+        //std::cout << "Node " << graph[i].getName() << ": ";
+        //std::cout << graph[i].getX() << ", " << graph[i].getY() << ", " << graph[i].getZ() <<std::endl;
+    }
 }
 
 

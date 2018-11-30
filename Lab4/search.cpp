@@ -1,5 +1,4 @@
 #include "search.h"
-//#include "documentation.h"
 
 
 #include <iostream>
@@ -15,6 +14,7 @@ template <class T>
 
 search<T>::search()
 {
+    documenter.buildGraph();
     data = documenter.getGraph();
     documenter.clearSave();
     speed = 0;
@@ -30,7 +30,6 @@ void search<T>::load(T &a, int select, bool viewer)
     data = a;
     selection = select;
 
-    bestPath = new int[a.size()];
     viewMode = viewer;
 }
 
@@ -156,9 +155,10 @@ void search<T>::save()
 
 //expanded in the future
 template <class T>
-void search<T>::configure()
+void search<T>::configure(int points)
 {
-    //will be used in the future
+    documenter.randomGraph(points);
+    data = documenter.getGraph();
 }
 
 template class search<std::vector<point>>;

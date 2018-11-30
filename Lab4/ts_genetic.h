@@ -41,7 +41,7 @@ public:
     TS_Genetic(bool);
 
     //iterates through the entire graph and outputs the shortest path
-    void findPath(vector<point> &graph, float &bestDist, int *&bestPath);
+    void findPath(vector<point> &graph, float &bestDist, std::vector<int> &bestPath);
 
     //creates a new random chromosome
     void createChromosome(vector<int> &chromosome);

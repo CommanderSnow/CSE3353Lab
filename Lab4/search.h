@@ -23,8 +23,9 @@ private:
 
     double speed;
 
-    int* bestPath;
+    //int* bestPath;
     float bestDist;
+    vector<int> bestPath;
 
     bool viewMode;
 
@@ -54,8 +55,8 @@ public:
     //saves the solution to file path given
     void save();
 
-    //expanded in the future
-    void configure();
+    //creates a random graph for testing purposes
+    void configure(int points);
 };
 
 #endif // SEARCH_H

@@ -32,7 +32,7 @@ public:
     TS_Tabu(bool);
 
     //iterates through the entire graph and outputs the shortest path
-    void findPath(vector<point> graph, float &bestDist, int *&bestPath);
+    void findPath(vector<point> graph, float &bestDist, std::vector<int> &bestPath);
 
     //gets the length of the path
     float getLength(vector<int> neighbor);

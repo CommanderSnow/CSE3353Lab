@@ -14,7 +14,7 @@ TS_Genetic::TS_Genetic(bool viewer)
     viewMode = viewer;
 }
 
-void TS_Genetic::findPath(vector<point> &graph, float &bestDist, int *&bestPath)
+void TS_Genetic::findPath(vector<point> &graph, float &bestDist, std::vector<int> &bestPath)
 {
     int size = graph.size();
 
@@ -91,17 +91,15 @@ void TS_Genetic::findPath(vector<point> &graph, float &bestDist, int *&bestPath)
         if(bestDist <= fitness[i])
         {
             bestDist = 1/fitness[i];
-            //bestPath = &population[i][0];
 
 
             for(int k=0; k<size; k++)
             {
-                bestPath[i] = population[i][k]+1;
+                bestPath.push_back(population[i][k]+1);
             }
 
         }
     }
-
 
     //when bestPath returns, bestPath[0] gets corrupted sometimes and I can't figure out why
     //bestPath[0] is correct at this point in the code

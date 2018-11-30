@@ -13,7 +13,7 @@ TS_Tabu::TS_Tabu(bool viewer)
     viewMode = viewer;
 }
 
-void TS_Tabu::findPath(std::vector<point> graph, float &bestDist, int *&bestPath)
+void TS_Tabu::findPath(std::vector<point> graph, float &bestDist, std::vector<int> &bestPath)
 {
     size = graph.size();
 

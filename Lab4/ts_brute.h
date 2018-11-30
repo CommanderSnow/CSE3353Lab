@@ -24,9 +24,9 @@ public:
 
 
     //iterates through the entire graph and outputs the shortest path
-    void findPath(std::vector<point> graph, float &bestDist, int *&bestPath);
+    void findPath(std::vector<point> graph, float &bestDist, std::vector<int> &bestPath);
 
-    void pathCalc(std::vector<point> graph, std::vector<int> permutation, float &totalDistance, float &bestDist, int *&bestPath);
+    void pathCalc(std::vector<point> graph, std::vector<int> permutation, float &totalDistance, float &bestDist, std::vector<int> &bestPath);
 
     //finds the distance between two points
     float distanceCalc(point, point);
